@@ -52,3 +52,5 @@ class NaverApi :
         pDate = datetime.datetime.strptime(post['pubDate'], '%a', '%d %b %Y %H:%M:%S + 0900')                            
         pubDate = pDate.strftime('%Y-%m-%d %H:%M:%S') #2023-03-07 17:04:00 변경
 
+        # outputs에 옮기기 
+
