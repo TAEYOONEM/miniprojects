@@ -13,7 +13,18 @@
 <!-- HTML 주석
 ![네이버뉴스앱](https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/navernews.png)
 -->
-<img src = "https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/navernews.png" width = "600"/>
+<img src = "https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/navernews.png" 
+  width = "600"/>
+
+- Naver API 영화검색 앱 만들기
+  - Python 3.11.2
+  - PyQt5
+  - Qt Designer
+  - Naver OpenAPI
+  - urllib.request 이미지 다운로드 사용 *
+
+<img src = "https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/navermovie.png"
+  width = "600"/>
 
 ## DB연동 GUI 개발 학습
 
