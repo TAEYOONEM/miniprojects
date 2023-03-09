@@ -25,7 +25,6 @@ class qtApp(QMainWindow) :
         print(rows)
         self.conn.close() # 프로그램 종료할 때
 
-
 if __name__ == '__main__' :    
     app = QApplication(sys.argv)
     ex = qtApp()
