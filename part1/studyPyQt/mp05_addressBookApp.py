@@ -91,7 +91,7 @@ class qtApp(QMainWindow) :
             if self.curIdx == 0 :
                 cur.execute(query, (fullName, phoneNum, email, address))
             else :
-                cur.execute(query, (fullName, phoneNum, email, address))
+                cur.execute(query, (fullName, phoneNum, email, address, self.curIdx))
 
             self.conn.commit()
             self.conn.close()
