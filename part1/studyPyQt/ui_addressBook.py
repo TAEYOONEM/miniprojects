@@ -69,7 +69,8 @@ class Ui_MainWindow(object):
         self.btnDel = QtWidgets.QPushButton(self.groupBox)
         self.btnDel.setGeometry(QtCore.QRect(529, 68, 80, 30))
         self.btnDel.setAccessibleDescription("")
-        self.btnDel.setStyleSheet("background-color:rgb(255,100,100)")
+        self.btnDel.setStyleSheet("background-color:rgb(255,50,50);\n"
+"color:rgb(255,255,255)")
         self.btnDel.setObjectName("btnDel")
         self.verticalLayout.addWidget(self.groupBox)
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)

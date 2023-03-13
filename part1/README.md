@@ -36,4 +36,16 @@
 ![주소록앱1](https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/addressbook1.png)
 ![주소록앱2](https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/addressbook2.png)
 
-## 미니프로젝트 실습 
+## 파이썬 관련 추가학습
+- QR코드 생성 관련 앱
+  - qrcode 모듈
+  - PyQt 
+
+![QR코드앱](https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/qrcodeapp.png)
+
+- 컴퓨터 정보출력 앱
+  - psutill 모듈
+  - socket 모듈
+  - request 모듈
+
+![컴퓨터 정보출력](https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/cominfo.png)
