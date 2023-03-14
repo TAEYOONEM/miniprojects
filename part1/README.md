@@ -49,3 +49,10 @@
   - request 모듈
 
 ![컴퓨터 정보출력](https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/cominfo.png)
+
+- TTS(Text To Speech)
+  - gtts 모듈
+  - playsound 모듈
+
+- 암호해제 프로그램
+  - itertools, zipfile 기본모듈
