@@ -5,28 +5,32 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import time
 
-class BackgroungWorker(QThread) : # PyQt5 스레드를 위한 클래스 존재
-    procChanged = pyqtSignal(str)
+MAX = 1000
 
-    def __init__(self,count = 0 ,parent = None) -> None:
+class BackgroungWorker(QThread) : # PyQt5 스레드를 위한 클래스 존재
+    procChanged = pyqtSignal(int) # 커스텀 시그널 (마우스 클릭같은 시그널을 따로 만드는 것)
+
+    def __init__(self, count = 0 ,parent = None) -> None:
         super().__init__()
         self.main = parent
-        self.working = True # 스레드 동작여부
+        self.working = False # 스레드 동작여부
         self.count = count
 
-    def run(self) :
+    def run(self) : # thread.start() --> run()
         # self.parent.pgbTask.setRange(0, 100)
         # for i in range(0, 101) :
         #     print(f'print thread > {i}')
         #     self.parent.pgbTask.setValue(i)
         #     self.parent.txbLog.append(f'print thread > {i}')
         while self.working :
-            self.procChanged.emit(f'print thread > {self.count}') # 시그널을 내보냄
-            self.count += 1 # 값 증가만 
-            time.sleep(0.0001)
+            if self.count <= MAX :
+                self.procChanged.emit(self.count) # 시그널을 내보냄
+                self.count += 1 # 값 증가만 // 업무프로세스 동작하는 위치
+                time.sleep(0.0001) # 세밀하게 주면 GUI처리를 제대로 못함
+            else :
+                self.working = False # 멈춤
 
-
-class qtApp(QMainWindow) :
+class qtApp(QMainWindow) : 
     def __init__(self) :
         super().__init__()
         uic.loadUi('./studyThread/threadApp.ui',self)
@@ -35,27 +39,22 @@ class qtApp(QMainWindow) :
 
         self.btnStart.clicked.connect(self.btnStartClicked)
         # init thread
-        self.worker = BackgroungWorker(parent=self)
+        self.worker = BackgroungWorker(parent=self, count= 0)
         # backgroundworke에 있는 시그널 접근 함수
         self.worker.procChanged.connect(self.procUpdated)
+        self.pgbTask.setRange(0, MAX)
 
-        self.pgbTask.setRange(0, 1000000)
-
-    @pyqtSlot(int)
+    # @pyqtSlot(int)
     def procUpdated(self, count) :
         self.txbLog.append(f'print thread > {count}')
         self.pgbTask.setValue(count)
         print(f'print thread > {count}')
 
-    @pyqtSlot()
+    # @pyqtSlot()
     def btnStartClicked(self):
-        self.worker.start()
+        self.worker.start() # 스레드 클래스 run() 실행
         self.worker.working = True
-
-    def btnStartClicked(self) :
-        th = BackgroungWorker(self)
-        th.start()
-
+        self.worker.count = 0 # 
 
 if __name__ == '__main__' :    
     app = QApplication(sys.argv)

@@ -34,4 +34,4 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "thread test"))
-        self.btnStart.setText(_translate("Form", "PushButton"))
+        self.btnStart.setText(_translate("Form", "Start Thread"))

@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Start Thread</string>
    </property>
   </widget>
   <widget class="QTextBrowser" name="txbLog">
