@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import pymysql
 
+
 class qtApp(QMainWindow) :
     conn = None
     curIdx = 0 
@@ -153,6 +154,8 @@ class qtApp(QMainWindow) :
             self.tblcarinfo.setItem(i, 2, QTableWidgetItem(name))
             self.tblcarinfo.setItem(i, 3, QTableWidgetItem(phone))
             self.tblcarinfo.setItem(i, 4, QTableWidgetItem(subPhone))
+    
+
 
 if __name__ == '__main__' :    
     app = QApplication(sys.argv)
