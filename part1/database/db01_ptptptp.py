@@ -23,13 +23,13 @@ class WindowClass(QMainWindow, form_class) :
         self.btn_loadFromFile.clicked.connect(self.loadImageFromFile)
 
     def makeTable(self, rows) :
-        self.tblcarinfo.setColumnCount(6)
+        self.tblcarinfo.setColumnCount(5)
         self.tblcarinfo.setRowCount(len(rows))
         
         self.tblcarinfo.setSelectionMode(QAbstractItemView.SingleSelection) 
         self.tblcarinfo.setHorizontalHeaderLabels(['차번', '차종', '이름', '휴대번호', '비상연락망'])
         
-        self.tblcarinfo.setColumnWidth(0, 0) 
+        self.tblcarinfo.setColumnWidth(0, 70) 
         self.tblcarinfo.setColumnWidth(1, 70) 
         self.tblcarinfo.setColumnWidth(2, 105)
         self.tblcarinfo.setColumnWidth(3, 175) 
@@ -44,11 +44,11 @@ class WindowClass(QMainWindow, form_class) :
             phone = row[3]
             subPhone = row[4]
 
-            self.tblcarinfo.setItem(i, 1, QTableWidgetItem(str(carNum)))
-            self.tblcarinfo.setItem(i, 2, QTableWidgetItem(carName))
-            self.tblcarinfo.setItem(i, 3, QTableWidgetItem(name))
-            self.tblcarinfo.setItem(i, 4, QTableWidgetItem(phone))
-            self.tblcarinfo.setItem(i, 5, QTableWidgetItem(subPhone))
+            self.tblcarinfo.setItem(i, 0, QTableWidgetItem(str(carNum)))
+            self.tblcarinfo.setItem(i, 1, QTableWidgetItem(carName))
+            self.tblcarinfo.setItem(i, 2, QTableWidgetItem(name))
+            self.tblcarinfo.setItem(i, 3, QTableWidgetItem(phone))
+            self.tblcarinfo.setItem(i, 4, QTableWidgetItem(subPhone))
 
 
     def initDB(self) :
