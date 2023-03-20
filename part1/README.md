@@ -65,7 +65,27 @@
 
 - 이메일 보내기앱, 대량메일 전송
 
-- PyGame
+- 게임만들기 - DinoRun
+  - PyGame
+
+<img src = "https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/pygame2.png">
+
+게임화면 
+- 전국 대학교 위치맵
+- folium
+- Pandas
+- PyQt
+  - QWebEnginView 추가
+
+<img src = "https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/folium.png">
+
+
+- 계산기 앱
+  - PyQt
+  - 16개 signal을 1개의 slot함수로 처리
+
+<img src = "https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/calculator.png">
+
 
 ## 미니프로젝트 실습
-- 
+- 테스트앱 만들기
