@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8964ABEC-0EAD-44A8-9A91-4FA88E14906C}</ProjectGuid>
+    <ProjectGuid>{E59736D6-E13C-4ADD-83EB-0A4E4AAE9BE2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>BogusTestApp</RootNamespace>
     <AssemblyName>BogusTestApp</AssemblyName>
