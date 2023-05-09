@@ -23,5 +23,5 @@
                  TextWrapping="Wrap" AcceptsReturn="True" 
                  VerticalScrollBarVisibility="Visible" IsReadOnly="True"
                  Style="{StaticResource MahApps.Styles.TextBox}" />
-    </Grid>    
+    </Grid>
 </mah:MetroWindow>
