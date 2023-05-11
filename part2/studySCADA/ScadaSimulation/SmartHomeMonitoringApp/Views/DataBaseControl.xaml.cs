@@ -32,6 +32,9 @@ namespace SmartHomeMonitoringApp.Views
 
         Thread MqttThread { get; set; } // 없으면 UI 컨트롤이 어려워짐
 
+        //  MQTT Subscribtion text 과도문제 속도저하를 잡기위해 변수
+        int MaxCount { get; set; } = 50;
+
         public DataBaseControl()
         {
             InitializeComponent();
@@ -46,13 +49,32 @@ namespace SmartHomeMonitoringApp.Views
 
             IsConnected = false;     // 아직 접속이 안되었음
             BtnConnDb.IsChecked = false;
+
+            // 실시간 모니터링 넘어왔을때
+            if(Commons.MQTT_CLIENT != null && Commons.MQTT_CLIENT.IsConnected)
+            {
+                IsConnected = true;
+                BtnConnDb.Content = "MQTT 연결중";
+                BtnConnDb.IsChecked = true;
+                Commons.MQTT_CLIENT.MqttMsgPublishReceived += MQTT_CLIENT_MqttMsgPublishReceived1;
+            }
+        }
+
+        private void MQTT_CLIENT_MqttMsgPublishReceived1(object sender, MqttMsgPublishEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         // 토글버튼 클릭이벤트 핸들러
         private void BtnConnDb_Click(object sender, RoutedEventArgs e)
         {
+            ConnectDb();
+        }
+
+        private void ConnectDb()
+        {
             if (IsConnected == false)
-            {               
+            {
                 // Mqtt 브로커 생성
                 Commons.MQTT_CLIENT = new uPLibrary.Networking.M2Mqtt.MqttClient(Commons.BROKERHOST);
 
@@ -88,7 +110,7 @@ namespace SmartHomeMonitoringApp.Views
                         Commons.MQTT_CLIENT.MqttMsgPublishReceived -= MQTT_CLIENT_MqttMsgPublishReceived;
                         Commons.MQTT_CLIENT.Disconnect();
                         UpdateLog(">>> MQTT Broker Disconnected...");
-                        
+
                         BtnConnDb.IsChecked = false;
                         BtnConnDb.Content = "MQTT 연결종료";
                         IsConnected = false;
@@ -108,8 +130,17 @@ namespace SmartHomeMonitoringApp.Views
         {
             // 예외처리 필요!!
             this.Invoke(() => {
+                if (MaxCount <= 0)
+                {
+                    TxtLog.Text = string.Empty;
+                    TxtLog.Text += ">>> 문서건수가 많아져서 초기화.";
+                    TxtLog.ScrollToEnd();
+                    MaxCount = 50;
+                }
+                
                 TxtLog.Text += $"{msg}\n";
                 TxtLog.ScrollToEnd();
+                MaxCount--;
             });
         }
 

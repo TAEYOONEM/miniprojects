@@ -18,6 +18,7 @@ using SmartHomeMonitoringApp.Views;
 using MahApps.Metro.Controls.Dialogs;
 using SmartHomeMonitoringApp.Logics;
 using System.ComponentModel;
+using MySqlX.XDevAPI.Common;
 
 namespace SmartHomeMonitoringApp
 {
@@ -98,8 +99,22 @@ namespace SmartHomeMonitoringApp
             MetroWindow_Closing(sender, new CancelEventArgs());
         }
 
-        private void BtnStartSubscribe_Click(object sender, RoutedEventArgs e)
+        private void MnuDataBaseMon_Click(object sender, RoutedEventArgs e)
+        {              
+            ActiveItem.Content = new Views.DataBaseControl();
+            StsSelScreen.Content = "DataBase Monitoring"; 
+        }
+
+        private void MnuRealTimeMon_Click(object sender, RoutedEventArgs e)
         {
+            ActiveItem.Content = new Views.RealTimeControl();
+            StsSelScreen.Content = "RealTime Monitoring";
+        }
+
+        private void MnuVisualizationMon_Click(object sender, RoutedEventArgs e)
+        {
+            ActiveItem.Content = new Views.VisualizationControl();
+            StsSelScreen.Content = "Visualization View";
 
         }
     }
