@@ -20,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using uPLibrary.Networking.M2Mqtt.Messages;
+using uPLibrary.Networking.M2Mqtt;
 
 namespace SmartHomeMonitoringApp.Views
 {
@@ -29,16 +30,17 @@ namespace SmartHomeMonitoringApp.Views
     public partial class DataBaseControl : UserControl
     {
         public bool IsConnected { get; set; }
+        Thread MqttThread { get; set; }  // 없으면 UI컨트롤이 어려워짐
 
-        Thread MqttThread { get; set; } // 없으면 UI 컨트롤이 어려워짐
-
-        //  MQTT Subscribtion text 과도문제 속도저하를 잡기위해 변수
-        int MaxCount { get; set; } = 50;
+        // MQTT Subscribition text 과도문제 속도저하를 잡기위해 변수 
+        // 23.05.11 09:29 SMG
+        int MaxCount { get; set; } = 10;
 
         public DataBaseControl()
         {
             InitializeComponent();
         }
+
 
         // 유저컨트롤 로드이벤트 핸들러
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -50,33 +52,28 @@ namespace SmartHomeMonitoringApp.Views
             IsConnected = false;     // 아직 접속이 안되었음
             BtnConnDb.IsChecked = false;
 
-            // 실시간 모니터링 넘어왔을때
-            if(Commons.MQTT_CLIENT != null && Commons.MQTT_CLIENT.IsConnected)
+            // 실시간 모니터링에서 넘어왔을 때
+            if (Commons.MQTT_CLIENT != null && Commons.MQTT_CLIENT.IsConnected)
             {
                 IsConnected = true;
                 BtnConnDb.Content = "MQTT 연결중";
                 BtnConnDb.IsChecked = true;
-                Commons.MQTT_CLIENT.MqttMsgPublishReceived += MQTT_CLIENT_MqttMsgPublishReceived1;
+                Commons.MQTT_CLIENT.MqttMsgPublishReceived += MQTT_CLIENT_MqttMsgPublishReceived;
             }
-        }
-
-        private void MQTT_CLIENT_MqttMsgPublishReceived1(object sender, MqttMsgPublishEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         // 토글버튼 클릭이벤트 핸들러
         private void BtnConnDb_Click(object sender, RoutedEventArgs e)
         {
-            ConnectDb();
+            ConnectDB();
         }
 
-        private void ConnectDb()
+        private void ConnectDB()
         {
             if (IsConnected == false)
             {
                 // Mqtt 브로커 생성
-                Commons.MQTT_CLIENT = new uPLibrary.Networking.M2Mqtt.MqttClient(Commons.BROKERHOST);
+                Commons.MQTT_CLIENT = new MqttClient(Commons.BROKERHOST);
 
                 try
                 {
@@ -98,7 +95,6 @@ namespace SmartHomeMonitoringApp.Views
                 catch (Exception ex)
                 {
                     UpdateLog($"!!! MQTT Erorr 발생 : {ex.Message}");
-
                 }
             }
             else
@@ -114,15 +110,12 @@ namespace SmartHomeMonitoringApp.Views
                         BtnConnDb.IsChecked = false;
                         BtnConnDb.Content = "MQTT 연결종료";
                         IsConnected = false;
-
                     }
                 }
                 catch (Exception ex)
                 {
-
                     UpdateLog($"!!! MQTT Erorr 발생 : {ex.Message}");
                 }
-
             }
         }
 
@@ -133,11 +126,11 @@ namespace SmartHomeMonitoringApp.Views
                 if (MaxCount <= 0)
                 {
                     TxtLog.Text = string.Empty;
-                    TxtLog.Text += ">>> 문서건수가 많아져서 초기화.";
+                    TxtLog.Text += ">>> 문서건수가 많아져 초기화!\n";
                     TxtLog.ScrollToEnd();
-                    MaxCount = 50;
+                    MaxCount = 10;  // 테스트할땐 10, 운영시는 50
                 }
-                
+
                 TxtLog.Text += $"{msg}\n";
                 TxtLog.ScrollToEnd();
                 MaxCount--;
@@ -170,16 +163,16 @@ namespace SmartHomeMonitoringApp.Views
                         if (conn.State == System.Data.ConnectionState.Closed) conn.Open();
                         string insQuery = @"INSERT INTO smarthomesensor
                                             (Home_Id,
-                                            Room_Name,
-                                            Sensing_DateTime,
-                                            Temp,
-                                            Humid)
+                                             Room_Name,
+                                             Sensing_DateTime,
+                                             Temp,
+                                             Humid)
                                             VALUES
                                             (@Home_Id,
-                                            @Room_Name,
-                                            @Sensing_DateTime,
-                                            @Temp,
-                                            @Humid)";
+                                             @Room_Name,
+                                             @Sensing_DateTime,
+                                             @Temp,
+                                             @Humid) ";
 
                         MySqlCommand cmd = new MySqlCommand(insQuery, conn);
                         cmd.Parameters.AddWithValue("@Home_Id", currValue["Home_Id"]);

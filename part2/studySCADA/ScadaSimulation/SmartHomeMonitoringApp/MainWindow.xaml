@@ -8,7 +8,7 @@
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:SmartHomeMonitoringApp"
     mc:Ignorable="d"
-    Title="SmartHome Monitoring System" Height="450" Width="800"
+    Title="SmartHome Monitoring System" Height="450" Width="800" 
     MinHeight="450" MinWidth="670"
     Loaded="MetroWindow_Loaded" Closing="MetroWindow_Closing">
     <mah:MetroWindow.IconTemplate>
@@ -38,11 +38,11 @@
                             <iconPacks:PackIconJamIcons Kind="PlayCircleF" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <!--<MenuItem x:Name="MnuStopSubscribe" Header="중지">
+                    <MenuItem x:Name="MnuStopSubscribe" Header="중지">
                         <MenuItem.Icon>
                             <iconPacks:PackIconBootstrapIcons Kind="PauseCircleFill" />
                         </MenuItem.Icon>
-                    </MenuItem>-->
+                    </MenuItem>
                     <Separator />
                     <MenuItem x:Name="MnuExitProgram" Header="끝내기" Click="MnuExitProgram_Click">
                         <MenuItem.Icon>
@@ -67,7 +67,7 @@
                     </MenuItem>
                     <MenuItem x:Name="MnuVisualizationMon" Header="시각화" Click="MnuVisualizationMon_Click">
                         <MenuItem.Icon>
-                            <iconPacks:PackIconMaterial Kind="ChartMultiline" />
+                            <iconPacks:PackIconMaterial Kind="ChartMultiline"  />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -75,13 +75,25 @@
                     <MenuItem.Icon>
                         <iconPacks:PackIconRemixIcon Kind="Brush2Fill" />
                     </MenuItem.Icon>
+
+                    <MenuItem Header="테마">
+                        <MenuItem x:Name="MnuLightTheme" Header="Light" IsChecked="True" IsCheckable="True" Checked="MnuThemeAccent_Checked"/>
+                        <MenuItem x:Name="MnuDarkTheme" Header="Dark" IsChecked="False" IsCheckable="True" Checked="MnuThemeAccent_Checked"/>
+                    </MenuItem>
+
+                    <MenuItem Header="액센트">
+                        <MenuItem x:Name="MnuAccentAmber" Header="Amber" IsChecked="False" IsCheckable="True" Checked="MnuThemeAccent_Checked"/>
+                        <MenuItem x:Name="MnuAccentBlue" Header="Blue" IsChecked="False" IsCheckable="True" Checked="MnuThemeAccent_Checked"/>
+                        <MenuItem x:Name="MnuAccentBrown" Header="Brown" IsChecked="False" IsCheckable="True" Checked="MnuThemeAccent_Checked"/>
+                        <MenuItem x:Name="MnuAccentCobalt" Header="Cobalt" IsChecked="False" IsCheckable="True" Checked="MnuThemeAccent_Checked"/>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="도움말">
                     <MenuItem.Icon>
                         <iconPacks:PackIconMaterial Kind="HelpBox" />
                     </MenuItem.Icon>
 
-                    <MenuItem x:Name="MnuAbout" Header="이 프로그램">
+                    <MenuItem x:Name="MnuAbout" Header="이 프로그램" Click="MnuAbout_Click">
                         <MenuItem.Icon>
                             <iconPacks:PackIconBoxIcons Kind="SolidInfoSquare" />
                         </MenuItem.Icon>
@@ -91,14 +103,14 @@
 
             <ToolBarTray>
                 <ToolBar Style="{StaticResource MahApps.Styles.ToolBar}">
-                    <Button x:Name="BtnStartSubscribe" ToolTip="구독 시작" >
+                    <Button x:Name="BtnStartSubscribe" ToolTip="구독 시작" Click="MnuStartSubscribe_Click">
                         <iconPacks:PackIconJamIcons Kind="PlayCircleF" />
                     </Button>
-                    <!--<Button x:Name="BtnStopSubscribe" ToolTip="구독 중지">
+                    <Button x:Name="BtnStopSubscribe" ToolTip="구독 중지">
                         <iconPacks:PackIconBootstrapIcons Kind="PauseCircleFill" />
-                    </Button>-->
+                    </Button>
                     <Separator />
-                    <Button x:Name="BtnExitProgram" ToolTip="프로그램 끝내기" Click="BtnExitProgram_Click" >
+                    <Button x:Name="BtnExitProgram" ToolTip="프로그램 끝내기" Click="BtnExitProgram_Click">
                         <iconPacks:PackIconForkAwesome Kind="SignOut" />
                     </Button>
                 </ToolBar>
