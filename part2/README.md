@@ -8,11 +8,7 @@
 	- Bogus(더미데이터 생성 라이브러리)
 	- Newtonsoft.json
 	- M2Mqtt(통신 라이브러리)
-<<<<<<< Updated upstream
 	- DB 데이터바인딩(MySQL)
-=======
-	- DB 데이터바인딩 (MySQL)
->>>>>>> Stashed changes
 	- LiveCharts
 	- OxyPlot
 
@@ -22,30 +18,17 @@
 	- 대용량 데이터 차는 OxyPlot을 사용
 
 온습도 더미데이터 시뮬레이터
-<<<<<<< Updated upstream
-=======
 
-<img src="https://raw.githubusercontent.com/hugoMGSung/miniprojects/main/images/smarthome_publisher.gif" width="510" />
+<img src="https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/smarthome_publisher.gif" width="510" />
 
 스마트홈 모니터링 앱
 
-<img src="https://raw.githubusercontent.com/hugoMGSung/miniprojects/main/images/smarthome_monitor1.gif" width="780" />
+<img src="https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/smarthome_monitor1.gif" width="780" />
 
 스마트홈 모니터링 시각화
 
-<img src="https://raw.githubusercontent.com/hugoMGSung/miniprojects/main/images/smarthome_monitor2.png" width="780" />
->>>>>>> Stashed changes
-
-<img src="https://raw.githubusercontent.com/hugoMGSung/miniprojects/main/images/smarthome_publisher.gif" width="510" />
-
-스마트홈 모니터링 앱
-
-<img src="https://raw.githubusercontent.com/hugoMGSung/miniprojects/main/images/smarthome_monitor1.gif" width="780" />
-
-스마트홈 모니터링 시각화
-
-<img src="https://raw.githubusercontent.com/hugoMGSung/miniprojects/main/images/smarthome_monitor2.png" width="780" />
+<img src="https://raw.githubusercontent.com/TaeYoonSS/miniprojects/main/images/smarthome_monitor2.png" width="780" />
 
 스마트홈 모니터링앱 테마적용
 
-<img src="https://raw.githubusercontent.com/hugoMGSung/miniprojects/main/images/smarthome_monitor3.gif" width="780" />	
+<img src="https://github.com/TaeYoonSS/miniprojects/blob/main/images/smarthome_monitor3.gif?raw=true" width="780" />	
